@@ -12,17 +12,17 @@ This can be good for troubleshooting, something that stops working, that might b
 Go to the DFW, over the categories click "Actions" -> Under Drafts click "View"
 You will be presented with the saved configurations:
 
-[![NSX-T DFW Changes](/blog/img/NSX-T_DFW-FWChanges.png)](/blog/img/NSX-T_DFW-FWChanges.png)
+[![NSX-T DFW Changes](/img/NSX-T_DFW-FWChanges.png)](/img/NSX-T_DFW-FWChanges.png)
 
 So lets go into troubleshooting mode, and lets say something stopped working at 10:32. I can find the date in the above screenshot and point at the dots and see the timestamps - look below:
 
 <!--more-->
 
-[![NSX-T DFW Changes 0609](/blog/img/NSX-T_DFW-FWChanges-0609.png)](/blog/img/NSX-T_DFW-FWChanges-0609.png)
+[![NSX-T DFW Changes 0609](/img/NSX-T_DFW-FWChanges-0609.png)](/img/NSX-T_DFW-FWChanges-0609.png)
 
 If I open that, i can see the sections that contains changes, and what changed that will be, added/modified/removed if i load that config.
 
-[![NSX-T Full Draft](/blog/img/NSX-T_DFW-FWChanges-FullDraft.png)](/blog/img/NSX-T_DFW-FWChanges-FullDraft.png)
+[![NSX-T Full Draft](/img/NSX-T_DFW-FWChanges-FullDraft.png)](/img/NSX-T_DFW-FWChanges-FullDraft.png)
 
 So whats visible here?
 - What saved it (Would properly be System)
@@ -35,10 +35,10 @@ What are the draft changes?
 
 Remember it dosent show that a rule was created as "Added" but "Deleted". That's because you will delete the rule when you load the config.
 
-[![NSX-T Draft Diffs](/blog/img/NSX-T_DFW-FWChanges-DraftDifferences.png)](/blog/img/NSX-T_DFW-FWChanges-DraftDifferences.png)
+[![NSX-T Draft Diffs](/img/NSX-T_DFW-FWChanges-DraftDifferences.png)](/img/NSX-T_DFW-FWChanges-DraftDifferences.png)
 
 If we click load as you can see below you will be prompted and warned that you will do a full replace of the FW. 
 
-[![NSX-T Draft Load](/blog/img/NSX-T_DFW-FWChanges-Load.png)](/blog/img/NSX-T_DFW-FWChanges-Load.png)
+[![NSX-T Draft Load](/img/NSX-T_DFW-FWChanges-Load.png)](/img/NSX-T_DFW-FWChanges-Load.png)
 
 Doing that will as the warning say put you back to the DFW - where you can decide to Publish, make some changes or revert.

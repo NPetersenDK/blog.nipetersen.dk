@@ -23,7 +23,7 @@ We also know its a part of VMware Contexa, that is VMwares take on a cloud secur
 As you can see below, you will right away after upgrading the NSX-T Manager to 4.x the warnings telling you: 
 *Auto Update Malicious IPs is turned off. All rules containing groups with malicious IPs might not work at all or work with outdated data if available.* 
 
-[![NSX-T DFW Warnings](/blog/img/NSX-T_DFW-Warnings-MaliciousIPS.png)](/blog/img/NSX-T_DFW-Warnings-MaliciousIPS.png)
+[![NSX-T DFW Warnings](/img/NSX-T_DFW-Warnings-MaliciousIPS.png)](/img/NSX-T_DFW-Warnings-MaliciousIPS.png)
 
 
 <!--more-->
@@ -31,7 +31,7 @@ As you can see below, you will right away after upgrading the NSX-T Manager to 4
 
 If you click settings you will see this:
 
-[![NSX-T Malicious IP Auto Update](/blog/img/NSX-T_DFW-MaliciousIPS-AutoUpdate.png)](/blog/img/NSX-T_DFW-MaliciousIPS-AutoUpdate.png)
+[![NSX-T Malicious IP Auto Update](/img/NSX-T_DFW-MaliciousIPS-AutoUpdate.png)](/img/NSX-T_DFW-MaliciousIPS-AutoUpdate.png)
 
 So there is not that much to set up actually:
 - Enable Auto Updating
@@ -53,7 +53,7 @@ What you can do:
 - Enable/disable rules (disabled per default if you upgraded to 4.x)
 - Change the action
 
-[![NSX-T DFW Rules](/blog/img/NSX-T_DFW-MaliciousIPS-DFWRules.png)](/blog/img/NSX-T_DFW-MaliciousIPS-DFWRules.png)
+[![NSX-T DFW Rules](/img/NSX-T_DFW-MaliciousIPS-DFWRules.png)](/img/NSX-T_DFW-MaliciousIPS-DFWRules.png)
 
 ## How does the group look?
 The group with the Malicious IPS are called "DefaultMaliciousIpGroup", and is a IP Address Only group.
