@@ -1,5 +1,5 @@
 title = "NPetersen"
-baseURL = "/blog/"
+baseURL = "/"
 theme = "nikolaj"
 
 # Generate the robots.txt file for SEO
