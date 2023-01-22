@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on NPetersen</title>
+    <link>/blog/posts/</link>
+    <description>Recent content in Posts on NPetersen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 06 Sep 2022 00:10:00 +0100</lastBuildDate>
+    
+	<atom:link href="/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NSX Troubleshooting, what changed in the firewall?</title>
+      <link>/blog/posts/nsx-what-changed/</link>
+      <pubDate>Tue, 06 Sep 2022 00:10:00 +0100</pubDate>
+      
+      <guid>/blog/posts/nsx-what-changed/</guid>
+      <description>&lt;p&gt;I found a neat feature that I didn&amp;rsquo;t know in the NSX Manager during a late night.
+Every publish/change makes a configuration point, that you can see what changed from then -&amp;gt; now.&lt;/p&gt;
+&lt;p&gt;This can be good for troubleshooting, something that stops working, that might be due to a DFW Configuration issue.&lt;/p&gt;
+&lt;p&gt;Go to the DFW, over the categories click &amp;ldquo;Actions&amp;rdquo; -&amp;gt; Under Drafts click &amp;ldquo;View&amp;rdquo;
+You will be presented with the saved configurations:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;/blog/blog/img/NSX-T_DFW-FWChanges.png&#34;&gt;&lt;img src=&#34;/blog/blog/img/NSX-T_DFW-FWChanges.png&#34; alt=&#34;NSX-T DFW Changes&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So lets go into troubleshooting mode, and lets say something stopped working at 10:32. I can find the date in the above screenshot and point at the dots and see the timestamps - look below:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>NSX-T 4.0.0.1 - Whats new?</title>
+      <link>/blog/posts/nsxt-40/</link>
+      <pubDate>Wed, 17 Aug 2022 00:10:00 +0100</pubDate>
+      
+      <guid>/blog/posts/nsxt-40/</guid>
+      <description>&lt;p&gt;In NSX-T 4.0.0.1, VMware changed their naming scheme (again, would some say), to just be NSX.
+One of the biggest features, and long overdue is IPv6 support for management. There is also a new feature for Blocking Malicious IPs, which we will look at below.&lt;/p&gt;
+&lt;p&gt;Here are the Release Notes: &lt;a href=&#34;https://docs.vmware.com/en/VMware-NSX/4.0/rn/vmware-nsx-4001-release-notes/index.html&#34;&gt;https://docs.vmware.com/en/VMware-NSX/4.0/rn/vmware-nsx-4001-release-notes/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;block-malicious-ips&#34;&gt;Block Malicious IPs:&lt;/h1&gt;
+&lt;p&gt;In the Release Notes the following is written:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Block Malicious IPs in Distributed Firewall is a new capability that allows the ability to block traffic to and from Malicious IPs.&lt;/li&gt;
+&lt;li&gt;Block Malicious IPs in Distributed Firewall is a new capability that allows the ability to block traffic to and from Malicious IPs. This is achieved by ingesting a feed of Malicious IPs provided by Vmware Contexa. This feed is automatically updated multiple times a day so that the environment is protected with the latest malicious IPs. For existing environments the feature will need to be turned on explicitly. For new environments, the feature will be default enabled&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My LAB enviorment is a existing installation, so it will need to be turned off explicitly as the release notes says. Luckily thats quite easy in NSX-T.&lt;/p&gt;
+&lt;p&gt;We also know its a part of VMware Contexa, that is VMwares take on a cloud security platform. I actually didnt know about Contexa before this update, it looks cool. We might see more of Contexa in later NSX-Releases, maybe within NSX-Intelligence where more of the Contexa looks to be already.&lt;/p&gt;
+&lt;h2 id=&#34;lets-setup-auto-update&#34;&gt;Lets setup auto update:&lt;/h2&gt;
+&lt;p&gt;As you can see below, you will right away after upgrading the NSX-T Manager to 4.x the warnings telling you:
+&lt;em&gt;Auto Update Malicious IPs is turned off. All rules containing groups with malicious IPs might not work at all or work with outdated data if available.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;/blog/blog/img/NSX-T_DFW-Warnings-MaliciousIPS.png&#34;&gt;&lt;img src=&#34;/blog/blog/img/NSX-T_DFW-Warnings-MaliciousIPS.png&#34; alt=&#34;NSX-T DFW Warnings&#34;&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>My Homelab (2022 edition)</title>
+      <link>/blog/posts/my-homelab-2022/</link>
+      <pubDate>Tue, 16 Aug 2022 10:00:00 +0100</pubDate>
+      
+      <guid>/blog/posts/my-homelab-2022/</guid>
+      <description>&lt;p&gt;I thought I would give an updated look at my HomeLab where i obviously lab most of my stuff.&lt;/p&gt;
+&lt;h1 id=&#34;why&#34;&gt;Why?&lt;/h1&gt;
+&lt;p&gt;My Homelab started as I think it does for many, a curiousity and passion to know more. For me it started way back when I was very young, and wanted to learn the enterprise stuff. It have made me get jobs where i havent had professional experiences, so I think it has paid off multiple times. Now its more of a playground, and to learn and try new stuff, beta releases and more.&lt;/p&gt;
+&lt;h1 id=&#34;what&#34;&gt;What?&lt;/h1&gt;
+&lt;p&gt;I work as a VMware and Datacenter Administrator in my daily work, so it helps me learn: Routing, VLANS, Switching (even L3 Switching), Datacenter management, VMware and more.
+I LAB many things, but primarily most of the VMware stack, with licenses from VMUG.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>High latency for VMs in NSX-T (VLAN)</title>
+      <link>/blog/posts/highlatencynsxt/</link>
+      <pubDate>Mon, 15 Aug 2022 00:02:00 +0100</pubDate>
+      
+      <guid>/blog/posts/highlatencynsxt/</guid>
+      <description>&lt;p&gt;NSX-T Version: 4.0.0.1.0.20159689&lt;/p&gt;
+&lt;p&gt;I was experiencing a high latency in NSX-T for all my VMs, and i couldnt figure out why. VMs on the same host, that wasnt on a NSX-T segment had +90ms in latency.
+I was pinging from a VM on VLAN 10 to a VM thats part of my NSX environment on VLAN 20. Both VMs was on the same host, and I dont have any NSX-T Overlay routing, so it was kinda weird.&lt;/p&gt;
+&lt;p&gt;Let me first show you how the latency was fluctuating:
+&lt;img src=&#34;/blog/blog/img/NSX-T_latency_issue.png&#34; alt=&#34;NSX-T high VM latency&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As you can see above the latency was in the low end at 8ms and to the very high end of 150+ ms per ping. Thats not acceptable, and especially not when the VMs are on the same host, and there is only 1 router between the VLANs.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Place a VSAN Witness host into maintenance through PowerCLI</title>
+      <link>/blog/posts/witnesshostmaintenance/</link>
+      <pubDate>Sun, 24 Jul 2022 00:32:00 +0100</pubDate>
+      
+      <guid>/blog/posts/witnesshostmaintenance/</guid>
+      <description>&lt;p&gt;The PowerCLI documentation is actually really good, but sometimes the documentation is just silly aswell. I was trying to make a vSAN Witness host go into Maintenance Mode through PowerCLI and had trouble doing it.&lt;/p&gt;
+&lt;p&gt;The Set-VMHost command has some parameters you can set for VSAN Data Migration and stuff like that, so i thought maybe it wanted to do something with vSAN even though the GUI is the normal Maintenance Mode dialog box.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/blog/blog/img/vCSA_Witness_MM.png&#34; alt=&#34;vCenter GUI VSAN MM Mode&#34;&gt;&lt;/p&gt;
+&lt;p&gt;When I tried using the Set-VMHost command i got the error A specified parameter was not correct:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Follow me on Github :)</title>
+      <link>/blog/posts/github/</link>
+      <pubDate>Tue, 18 Feb 2020 00:32:00 +0100</pubDate>
+      
+      <guid>/blog/posts/github/</guid>
+      <description>&lt;p&gt;Remember to follow me on Github, since i post a lot of my scripts there. I&amp;rsquo;m mostly doing PowerShell stuff, so keep an eye out.&lt;/p&gt;
+&lt;p&gt;I made a repository for VMware for my scripts for VMware - take a look here: &lt;a href=&#34;https://github.com/NPetersenDK/VMware-Scripts&#34;&gt;https://github.com/NPetersenDK/VMware-Scripts&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>My Homelab</title>
+      <link>/blog/posts/my-homelab/</link>
+      <pubDate>Fri, 14 Feb 2020 00:16:52 +0100</pubDate>
+      
+      <guid>/blog/posts/my-homelab/</guid>
+      <description>&lt;p&gt;My homelab is based on 4 hosts and one fileserver (running Windows, for now).&lt;/p&gt;
+&lt;h2 id=&#34;my-vmware-installation&#34;&gt;My VMware Installation&lt;/h2&gt;
+&lt;p&gt;I try to be a front runner for running the newest version of everything. So as of now i&amp;rsquo;m on 6.7U3 on everything.
+I have 5 hosts in my installation, which one of them is in France (i&amp;rsquo;m living in Denmark) - i have a 500/500 Mbit connection to it.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>My First Post - on a newer installation :)</title>
+      <link>/blog/posts/my-first-post/</link>
+      <pubDate>Mon, 10 Feb 2020 17:46:51 +0100</pubDate>
+      
+      <guid>/blog/posts/my-first-post/</guid>
+      <description>Welcome to my new blog, i have migrated away from my Hoompas.dk domain which was based of a WordPress server that i quite frankly forgot to patch all the time.
+All it&amp;rsquo;s content is now gone and we&amp;rsquo;re starting on a fresh. I&amp;rsquo;m looking forward to blogging a bit about VMware, and everything else i find nerdy enough to go on here.</description>
+    </item>
+    
+  </channel>
+</rss>
