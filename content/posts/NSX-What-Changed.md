@@ -39,6 +39,6 @@ Remember it dosent show that a rule was created as "Added" but "Deleted". That's
 
 If we click load as you can see below you will be prompted and warned that you will do a full replace of the FW. 
 
-[![NSX-T Draft Load](/img/NSX-T_DFW-FWChanges-Load.png)](/img/NSX-T_DFW-FWChanges-Load.png)
+[![NSX-T Draft Load](/img/NSX-T_DFW-FWChanges-LOAD.png)](/img/NSX-T_DFW-FWChanges-LOAD.png)
 
 Doing that will as the warning say put you back to the DFW - where you can decide to Publish, make some changes or revert.
