@@ -1,16 +1,17 @@
 {{ define "main" }}
-    {{ .Scratch.Set "singlePage" true }} <!-- SET singlePage variable -->
     <div class="article-wrapper u-cf single">
-        {{  if or (fileExists (print "layouts/partials/content-type/" .Type ".html") ) (fileExists (print "themes/bilberry-hugo-theme/layouts/partials/content-type/" .Type ".html")) }}
-            {{ partial (print "content-type/" .Type) . }}
-        {{ else }}
-            {{ partial "content-type/article" . }}
-        {{ end }}
+        <a class="bubble" href="{{ .Permalink }}">
+            <i class="fas fa-fw {{ or .Params.icon "fa-pencil-alt" }}"></i>
+        </a>
+
+        <article class="default article">
+            {{ partial "featured-image" . }}
+            {{ partial "default-content-single" . }}
+            {{ partial "article-footer" . }}
+        </article>
     </div>
 
     {{ if ( .Params.showComments | default true ) }}
         {{ template "_internal/disqus.html" . }}
     {{ end }}
-
-    {{ .Scratch.Set "singlePage" false }} <!-- RESET singlePage variable -->
 {{ end }}

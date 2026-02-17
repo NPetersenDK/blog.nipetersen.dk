@@ -32,7 +32,7 @@
         {{ end }}
     </div>
 
-    {{ if or (.Scratch.Get "singlePage") (.Params.noSummary) }}
+    {{ if .Params.noSummary }}
     {{ .Content }}
     {{ else }}
     {{ .Summary }}
