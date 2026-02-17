@@ -53,14 +53,14 @@ disqusShortname = ""
 
   # Header configuration
     # your subtitle if you want to use any
-    subtitle = "A nerdy blog by me - Mostly server related."
-    tagline = "A nerdy blog by me - Server, AV and DevOps related stuff. If you are liking what you see - please follow me below :)"
+    subtitle = "A nerdy blog by me"
+    tagline = "A nerdy blog by me - Server, AV and DevOps related stuff. VMware dude with flair for servers and network went Cloud/DevOps. Get in touch on the below socials"
 
     # if you want to use gravatar for the header image
     gravatarEMail = "n@nipetersen.dk"
 
     # set an path to the image file you want to use | overwrites gravatar
-    customImage = ""
+    customImage = "/img/avatar.png"
 
     # define the icon you want to use for the overlay for the customImage or gravatar.
     overlayIcon = "fa-home"
