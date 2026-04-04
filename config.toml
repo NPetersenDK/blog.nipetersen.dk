@@ -58,7 +58,7 @@ disqusShortname = ""
   # Header configuration
     # your subtitle if you want to use any
     subtitle = "A nerdy blog by me"
-    tagline = "A nerdy blog by me - Server, AV and DevOps related stuff. Server and network dude that went Cloud/DevOps, previously working with VMware. Get in touch on the below socials"
+    tagline = "A nerdy blog by me - Server, AV, Cloud and DevOps related stuff. Server and network dude that went Cloud/DevOps, previously working with VMware."
 
     # if you want to use gravatar for the header image
     gravatarEMail = "n@nipetersen.dk"
