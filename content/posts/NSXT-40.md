@@ -3,7 +3,6 @@ title: "NSX-T 4.0.0.1 - Whats new?"
 date: 2022-08-17T00:10:00+01:00
 draft: false
 tags: ["VMware", "Networking", "Security"]
- ---
 ---
 
 In NSX-T 4.0.0.1, VMware changed their naming scheme (again, would some say), to just be NSX.
