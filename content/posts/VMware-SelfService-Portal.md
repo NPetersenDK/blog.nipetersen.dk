@@ -21,7 +21,7 @@ I was a VMware System Administrator for years. I know the PowerCLI commands. I k
 
 ## My goals for the project were:
 - Build a Self-Service portal on plain HTML and CSS from Bootstrap (Bootstrap is a great way to get a decent-looking UI without needing to be a designer or set up a complex frontend framework).
-- Use Azure Static WebApps for hosting the frontend
+- Use Azure Static WebApps for hosting the frontend. Which helps you get authentication and authorization out of the box with Entra ID, and also makes deployment super easy.
 - Azure Functions for the backend API using PowerShell. By doing this we keep it simple, due to we use the same PowerCLI commands we already know. We do not need to learn VMwares REST API or a new programming language.
 - Use Azure Table Storage for configuration and state management. This keeps the backend stateless and simple, and allows us to manage configuration without touching files or redeploying code.
 - Keep costs low. My goal is that it shouldnt exceed a monthly cost of around $15 to run.
