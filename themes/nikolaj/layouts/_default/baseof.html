@@ -1,6 +1,10 @@
 {{- if not .Params.gallery -}}
 {{- if not .Params.featuredImage -}}
+{{- if .Site.Params.customImage -}}
+{{ .Scratch.Set "image" (.Site.Params.customImage | absURL) }}
+{{- else -}}
 {{ .Scratch.Set "image" (printf "https://www.gravatar.com/avatar/%s?size=200" (md5 .Site.Params.gravatarEMail)) }}
+{{- end -}}
 {{- else -}}
 {{ .Scratch.Set "image" (.Params.featuredImage) }}
 {{- end -}}

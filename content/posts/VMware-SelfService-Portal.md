@@ -4,10 +4,12 @@ date: 2026-04-04T13:00:00+01:00
 draft: false
 tags: ["VMware", "PowerShell", "Azure", "vCenter", "SelfService", "AI", "Project", "Github", "Open Source"]
 ---
-
 Last month I built a SelfService Portal for VMware vCenter as an alternative to a full-fledged automation platform. The idea was simple: let users provision their own VMs in minutes without manual work needed and without paying for an expensive platform to do it. The goal was to have a maintainable, cost-effective solution that could be easily deployed in any environment with a vCenter and some Azure services for under $15 per month.
 
 I wanted to see how far I could come with a "vibecoded" solution, but still work in something I know, and that is something I'm sure I can maintain with and without the need of AI.
+
+![VMware-SelfService-Architecture (AI Generated)](/img/VMware-SelfService-Architecture.png)
+
 
 <!--more-->
 
@@ -34,6 +36,8 @@ I wanted to have this in 2 repositories, one for the backend and one for the fro
 ## How it works
 
 The backend is an Azure Functions app written in PowerShell, running in a Docker container. The idea is that you run it close to your vCenter - on-premises in a VM with network access to vCenter. 
+
+![Azure Functions](/img/Azure-Functions.png)
 
 The frontend is plain HTML with Bootstrap for styling, deployed to an Azure Static WebApp. Authentication and authorization is handled by Azure Static WebApps and Entra ID, so you do not need to build any login logic yourself.
 
