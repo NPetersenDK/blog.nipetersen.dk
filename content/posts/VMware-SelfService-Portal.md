@@ -5,15 +5,15 @@ draft: false
 tags: ["VMware", "PowerShell", "Azure", "vCenter", "SelfService", "AI", "Project", "Github", "Open Source"]
 ---
 
-Last month I built a SelfService Portal for VMware vCenter as an alternative to a full-fledged automation platform. The idea was simple: let users provision their own VMs in minutes without manual work needed and without paying for an expensive platform to do it. The goal was to have a maintanable, cost-effective solution that could be easily deployed in any environment with a vCenter and some Azure services for under $15 per month.
+Last month I built a SelfService Portal for VMware vCenter as an alternative to a full-fledged automation platform. The idea was simple: let users provision their own VMs in minutes without manual work needed and without paying for an expensive platform to do it. The goal was to have a maintainable, cost-effective solution that could be easily deployed in any environment with a vCenter and some Azure services for under $15 per month.
 
-I wanted to see how far i could come with a "vibecoded" solution, but still work in something i know of, and that is something im sure i can maintain with and without the need of AI.
+I wanted to see how far I could come with a "vibecoded" solution, but still work in something I know, and that is something I'm sure I can maintain with and without the need of AI.
 
 <!--more-->
 
 # Why did I try to build this?
 
-I do not work with any VMware components in my professional life anymore, but I have a background as a VMware System Administrator, and I still have access to a lab running vSphere. I wanted to try to bridge the gap between my current work with Cloud solutions and my past experience with VMware, and this project was a perfect way to do that. some of the things we do here, is things i wouldnt have done without my experience with Cloud and the offerings from Azure.
+I do not work with any VMware components in my professional life anymore, but I have a background as a VMware System Administrator, and I still have access to a lab running vSphere. I wanted to try to bridge the gap between my current work with Cloud solutions and my past experience with VMware, and this project was a perfect way to do that. Some of the things we do here are things I wouldn't have done without my experience with Cloud, working with Developers and the offerings from Azure.
 
 vRealize Automation (now Aria Automation) and other automation platforms are powerful, but they often come with a price tag and a maintenance burden that not every organisation can justify. If all you want is to let users spin up VMs from a set of approved templates, on approved clusters and networks, without involving the helpdesk every time - you do not need a full-blown platform to do that.
 
@@ -21,13 +21,13 @@ I was a VMware System Administrator for years. I know the PowerCLI commands. I k
 
 ## My goals for the project were:
 - Build a Self-Service portal on plain HTML and CSS from Bootstrap (Bootstrap is a great way to get a decent-looking UI without needing to be a designer or set up a complex frontend framework).
-- Use Azure Static WebApps for hosting the frontend. Which helps you get authentication and authorization out of the box with Entra ID, and also makes deployment super easy.
-- Azure Functions for the backend API using PowerShell. By doing this we keep it simple, due to we use the same PowerCLI commands we already know. We do not need to learn VMwares REST API or a new programming language.
+- Use Azure Static WebApps for hosting the frontend, which helps you get authentication and authorization out of the box with Entra ID, and also makes deployment super easy.
+- Azure Functions for the backend API using PowerShell. By doing this we keep it simple, because we use the same PowerCLI commands we already know. We do not need to learn VMware's REST API or a new programming language.
 - Use Azure Table Storage for configuration and state management. This keeps the backend stateless and simple, and allows us to manage configuration without touching files or redeploying code.
-- Keep costs low. My goal is that it shouldnt exceed a monthly cost of around $15 to run.
+- Keep costs low. My goal is that it shouldn't exceed a monthly cost of around $15 to run.
 - Cloud-Init was a requirement for my Linux Templates. I wanted to be able to inject the cloud-init configuration through guestinfo properties, and have the backend handle that when provisioning the VM.
 - A user should be able to log in, see the available templates, clusters, and networks, and provision a VM with a few clicks. They should also be able to see their existing VMs and delete them if needed.
-- A admin should be able to manage the allowed templates, clusters, networks, and system names through the frontend without needing to touch any config files or code.
+- An admin should be able to manage the allowed templates, clusters, networks, and system names through the frontend without needing to touch any config files or code.
 
 I wanted to have this in 2 repositories, one for the backend and one for the frontend, to keep things organized and separate. 
 
@@ -45,7 +45,7 @@ The API itself is protected by a function key, which the Static WebApp picks up 
 
 The PowerShell part is what made this fast to build. The commands I needed:  `New-VM`, `Get-Template`, `Get-Cluster`, `Get-VirtualPortGroup` - are things I had written dozens of times before. Wrapping them in an Azure Function with a JSON request body was straightforward.
 
-There is a `StorageModule` that handles all Table Storage operations using the REST API directly with key authentication, and a `VMwareModule` that handles the actual provisioning. Cloud-init is also supported for Linux templates and  from a public source like GitHub Gist, the hostname is injected, and it is passed to the VM via guestinfo properties.
+There is a `StorageModule` that handles all Table Storage operations using the REST API directly with key authentication, and a `VMwareModule` that handles the actual provisioning. Cloud-init is also supported for Linux templates. From a public source like GitHub Gist, the hostname is injected, and it is passed to the VM via guestinfo properties.
 
 Since vSphere 7 and later support cloud-init through guestinfo, the backend takes care of fetching the cloud-init configuration from the provided URL, injecting the hostname, and passing it to the VM during provisioning. This allows for seamless integration of cloud-init with your Linux templates, making it easier to manage and customize your VMs, and also update the cloud-init templates without needing to touch VM Templates and redeploy the backend.
 
@@ -68,12 +68,12 @@ So the total cost to run this platform is roughly $10-11 per month, plus whateve
 
 Both repos include a disclaimer: this is a starting point, not a production-ready solution. Review the code, harden it for your environment, and make it your own. That is the whole point. I only built the foundation and the basic functionality, it still needs work to be production-ready, but it is a great starting point for anyone looking to build something similar.
 
-Also if it didn't come clear the first time: This is coded with large amounts of AI.
+Also if it wasn't clear the first time: This is coded with large amounts of AI.
 
-## What did i Learn of the vibecoding approach?
-This project was built heavily using the vibecoding approach and Github Copilot CLI. I had a clear vision of what I wanted to build, and I used Copilot to generate code snippets, handle boilerplate, and even write some of the logic.
+## What did I learn from the vibecoding approach?
+This project was built heavily using the vibecoding approach and GitHub Copilot CLI. I had a clear vision of what I wanted to build, and I used Copilot to generate code snippets, handle boilerplate, and even write some of the logic.
 
-I was kind of amazed of how quickly i had something. 
+I was kind of amazed by how quickly I had something. 
 
 My first prompt was this:
 
