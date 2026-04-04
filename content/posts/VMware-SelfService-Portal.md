@@ -23,7 +23,7 @@ I was a VMware System Administrator for years. I know the PowerCLI commands. I k
 - Build a Self-Service portal on plain HTML and CSS from Bootstrap (Bootstrap is a great way to get a decent-looking UI without needing to be a designer or set up a complex frontend framework).
 - Use Azure Static WebApps for hosting the frontend, which helps you get authentication and authorization out of the box with Entra ID, and also makes deployment super easy.
 - Azure Functions for the backend API using PowerShell. By doing this we keep it simple, because we use the same PowerCLI commands we already know. We do not need to learn VMware's REST API or a new programming language.
-- Use Azure Table Storage for configuration and state management. This keeps the backend stateless and simple, and allows us to manage configuration without touching files or redeploying code.
+- Use Azure Table Storage for configuration and state management. This keeps the backend stateless and simple, and allows us to manage configuration without touching files or redeploying code. Azure Table Storage is also very cost-effective for this kind of use case.
 - Keep costs low. My goal is that it shouldn't exceed a monthly cost of around $15 to run.
 - Cloud-Init was a requirement for my Linux Templates. I wanted to be able to inject the cloud-init configuration through guestinfo properties, and have the backend handle that when provisioning the VM.
 - A user should be able to log in, see the available templates, clusters, and networks, and provision a VM with a few clicks. They should also be able to see their existing VMs and delete them if needed.
@@ -41,9 +41,13 @@ The configuration templates, clusters, networks, and system names that are avail
 
 The API itself is protected by a function key, which the Static WebApp picks up from a Key Vault secret or a Static WebApp environment secret.
 
+By separating the frontend and backend with a REST API, this architecture isn't limited to just the web interface. Other applications, scripts, or automation tools can consume the API directly. This means you could integrate VM provisioning into whatever you want. CI/CD Pipelines, build custom tooling, make it able to be consumed by others - all without touching the web frontend.
+
 ## The backend in a bit more detail
 
 The PowerShell part is what made this fast to build. The commands I needed:  `New-VM`, `Get-Template`, `Get-Cluster`, `Get-VirtualPortGroup` - are things I had written dozens of times before. Wrapping them in an Azure Function with a JSON request body was straightforward.
+
+The backend exposes a REST API with several endpoints for different actions: creating VMs, listing existing VMs, deleting VMs, and managing configuration (templates, clusters, networks, and system names).
 
 There is a `StorageModule` that handles all Table Storage operations using the REST API directly with key authentication, and a `VMwareModule` that handles the actual provisioning. Cloud-init is also supported for Linux templates. From a public source like GitHub Gist, the hostname is injected, and it is passed to the VM via guestinfo properties.
 
@@ -71,7 +75,9 @@ Both repos include a disclaimer: this is a starting point, not a production-read
 Also if it wasn't clear the first time: This is coded with large amounts of AI.
 
 ## What did I learn from the vibecoding approach?
-This project was built heavily using the vibecoding approach and GitHub Copilot CLI. I had a clear vision of what I wanted to build, and I used Copilot to generate code snippets, handle boilerplate, and even write some of the logic.
+This project was built heavily using the vibecoding approach and GitHub Copilot CLI. I had a clear vision of what I wanted to build, and I used Copilot to generate the first draft of the code for both the backend and frontend. 
+
+I quickly learned that giving Copilot CLI access to both the backend and frontend repos allowed it to fix things one place, and adjust it another. For example, I asked for a change in how the template configuration was stored, and it adjusted both the backend and frontend in one go, and made sure everything was working.
 
 I was kind of amazed by how quickly I had something. 
 
@@ -85,6 +91,13 @@ My first prompt was this:
 > - System Name (dropdown)
 
 I think i have used around 5 hours in total on this project. And now the platform is ready for the next prompts to make it the specific needs for the environment it will be used in.
+
+### What did i notice?
+You still need to understand whats going on, and whats being generated. You cant just ask for "Make me a self-service portal" and expect it to be perfect. You need to guide it, review the code, and make sure it fits your needs. But if you do that, you can get something up and running in no time.
+
+I also quickly saw some issues different places, that i would not have noticed if I didn't have the experience with the technologies I asked for. Some errors came up in the backend code, but it was actually more of a issue with how it PowerCLI and VMware. 
+
+So having the experience with the technologies you are asking for is still important, because it allows you to review the generated code and make sure it makes sense, and also to guide the generation in the right direction.
 
 ## Video
 
