@@ -57,7 +57,14 @@ William Lam has a great blog post on how to set up cloud-init: [Cloud-Init on vS
 
 ## The frontend
 
-The frontend is as simple as I could make it without it looking bad. Bootstrap handles the layout and styling, which means making changes to the look is straightforward - you do not need a build pipeline or a framework, just edit the HTML. There are two sections: a self-service section for users to create and view their own VMs, and an admin section for managing the allowed options.
+I am by no means a frontend developer, but I have been writing HTML and a bit of CSS for years. I did not want to learn a frontend framework and to be honest, I have always just used [Bootstrap](https://getbootstrap.com/) for quick and simple UIs. It is not the most modern or fancy way to build a frontend, but it gets the job done without needing to learn React, Angular, Vue, or whatever the latest framework is.
+
+It also means that the frontend is just plain HTML and CSS, which makes it super easy to edit and customize. The frontend is backed by Azure Static WebApps that gives some nice features:
+
+- Authentication and Authorization with Entra ID out of the box. You can easily set up role-based access control to restrict who can provision VMs and who can manage the configuration.
+- An easy deployment pipeline. You basically get the Github Actions pipeline when you create the WebApp. So there is CI/CD out of the box.
+- Custom domains and SSL are also super easy to set up with Static WebApps.
+- Managed by Microsoft
 
 ## Cost
 
