@@ -1,5 +1,5 @@
 ---
-title: "Building a VMware SelfService Portal with PowerShell and Azure"
+title: "Building a VMware SelfService Portal with the power of Github Copilot, PowerShell and Azure"
 date: 2026-04-04T13:00:00+01:00
 draft: false
 tags: ["VMware", "PowerShell", "Azure", "vCenter", "SelfService", "AI", "Project", "Github", "Open Source"]
