@@ -42,17 +42,7 @@ The API itself is protected by a function key, which the Static WebApp picks up 
 
 The PowerShell part is what made this fast to build. The commands I needed — `New-VM`, `Get-Template`, `Get-Cluster`, `Get-VirtualPortGroup` — are things I had written dozens of times before. Wrapping them in an Azure Function with a JSON request body was straightforward.
 
-There is a `StorageModule` that handles all Table Storage operations using the REST API directly with SharedKeyLite authentication, and a `VMwareModule` that handles the actual provisioning. Cloud-init is also supported for Linux templates: userdata is fetched from a GitHub Gist, the hostname is injected, and it is passed to the VM via guestinfo properties.
-
-The API endpoints are:
-
-| Endpoint | Description |
-|---|---|
-| `GET /api/ping` | Health check |
-| `GET /api/GetOptions` | Returns available templates, clusters, networks, system names |
-| `POST /api/CreateVM` | Provisions a VM from a template |
-| `GET /api/ListVMs` | Lists VMs for a given responsible |
-| `GET/POST/DELETE /api/manage-config` | Admin config management |
+There is a `StorageModule` that handles all Table Storage operations using the REST API directly with key authentication, and a `VMwareModule` that handles the actual provisioning. Cloud-init is also supported for Linux templates and  from a public source like GitHub Gist, the hostname is injected, and it is passed to the VM via guestinfo properties.
 
 ## The frontend
 
