@@ -70,7 +70,7 @@ It also means that the frontend is just plain HTML and CSS, which makes it super
 
 This is where it gets interesting. The Azure Static WebApp in the Standard tier is around $9 per month. The Azure Storage Account used for Table Storage and configuration will be well under $2 per month for most organisations. The Docker container running the backend can run on any VM or server you already have near vCenter - there is no additional Azure cost for that part if you run it on-premises.
 
-So the total cost to run this platform is roughly $10-11 per month, plus whatever you already spend on infrastructure close to vCenter. Compare that to a vRealize Automation licence.
+So the total cost to run this platform is roughly $10-11 per month, plus whatever you already spend on infrastructure close to vCenter. Compare that to a full-blown automation platform with management overhead and maybe licensing costs.
 
 ## Repositories
 
