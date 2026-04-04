@@ -2,6 +2,7 @@
 title: "Place a VSAN Witness host into maintenance through PowerCLI"
 date: 2022-07-24T00:32:00+01:00
 draft: false
+tags: ["VMware", "vSAN"]
 ---
 
 The PowerCLI documentation is actually really good, but sometimes the documentation is just silly aswell. I was trying to make a vSAN Witness host go into Maintenance Mode through PowerCLI and had trouble doing it.

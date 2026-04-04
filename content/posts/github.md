@@ -2,6 +2,7 @@
 title: "Follow me on Github :)"
 date: 2020-02-18T00:32:00+01:00
 draft: false
+tags: ["Github", "Open Source", "Projects"]
 ---
 
 Remember to follow me on Github, since i post a lot of my scripts there. I'm mostly doing PowerShell stuff, so keep an eye out.

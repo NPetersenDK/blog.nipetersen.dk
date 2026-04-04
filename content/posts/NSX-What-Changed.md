@@ -2,6 +2,7 @@
 title: "NSX Troubleshooting, what changed in the firewall?"
 date: 2022-09-06T00:10:00+01:00
 draft: false
+tags: ["VMware", "Networking", "Security"]
 ---
 
 I found a neat feature that I didn't know in the NSX Manager during a late night.

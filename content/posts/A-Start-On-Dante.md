@@ -2,6 +2,7 @@
 title: "A Start on Dante - A journey into the world of Digital AV"
 date: 2026-02-17T23:43:05+01:00
 draft: false
+tags: ["Audio", "Dante", "AV"]
 ---
 
 For over 15 years I have been using analog audio equipment and last month i made the move to Dante. Learning Dante has been a journey, and I wanted to share my experience with you. I will go through the setup, the issues I faced, and the good things about Dante.

@@ -2,6 +2,7 @@
 title: "High latency for VMs in NSX-T (VLAN)"
 date: 2022-08-15T00:02:00+01:00
 draft: false
+tags: ["VMware", "Networking", "Security"]
 ---
 
 NSX-T Version: 4.0.0.1.0.20159689

@@ -2,14 +2,12 @@
 title: "Building a VMware SelfService Portal with PowerShell and Azure"
 date: 2026-04-04T13:00:00+01:00
 draft: false
-tags: ["VMware", "PowerShell", "Azure", "vCenter", "SelfService"]
+tags: ["VMware", "PowerShell", "Azure", "vCenter", "SelfService", "AI", "Project", "Github", "Open Source"]
 ---
 
-Last month I built a SelfService Portal for VMware vCenter as an alternative to the VMware vRealize Automation platform. The idea was simple: let users provision their own VMs without raising tickets, while admins retain control over where and how VMs can be created — without paying for an expensive platform to do it. 
+Last month I built a SelfService Portal for VMware vCenter as an alternative to the VMware vRealize Automation platform. The idea was simple: let users provision their own VMs without raising tickets, while admins retain control over where and how VMs can be created — without paying for an expensive platform to do it. The goal was to have a maintanable, cost-effective solution that could be easily deployed in any environment with a vCenter and some Azure services for under $15 per month.
 
 I wanted to see how far i could come with a "vibecoded" solution, but still work in something i know of, and that is something im sure i can maintain with and without the need of AI.
-
-The project ended up being two repositories: a [backend](https://github.com/NPetersenDK/VMware-SelfService-Backend) and a [frontend](https://github.com/NPetersenDK/VMware-SelfService-Frontend).
 
 <!--more-->
 
@@ -37,6 +35,8 @@ The frontend is plain HTML with Bootstrap for styling, deployed to an Azure Stat
 Configuration — which templates, clusters, networks, and system names are available — is stored in Azure Table Storage. The admin section of the frontend lets you manage these without touching any config files. When a user creates a VM, the request goes to the backend API, which reads the allowed config from Table Storage, provisions the VM on vCenter, and records it back to Table Storage.
 
 The API itself is protected by a function key, which the Static WebApp picks up from a Key Vault secret or a Static WebApp environment secret.
+
+The project ended up being two repositories: a [backend](https://github.com/NPetersenDK/VMware-SelfService-Backend) and a [frontend](https://github.com/NPetersenDK/VMware-SelfService-Frontend).
 
 ## The backend in a bit more detail
 
