@@ -47,6 +47,10 @@ The PowerShell part is what made this fast to build. The commands I needed:  `Ne
 
 There is a `StorageModule` that handles all Table Storage operations using the REST API directly with key authentication, and a `VMwareModule` that handles the actual provisioning. Cloud-init is also supported for Linux templates and  from a public source like GitHub Gist, the hostname is injected, and it is passed to the VM via guestinfo properties.
 
+Since vSphere 7 and later support cloud-init through guestinfo, the backend takes care of fetching the cloud-init configuration from the provided URL, injecting the hostname, and passing it to the VM during provisioning. This allows for seamless integration of cloud-init with your Linux templates, making it easier to manage and customize your VMs, and also update the cloud-init templates without needing to touch VM Templates and redeploy the backend.
+
+William Lam has a great blog post on how to set up cloud-init with vSphere [Cloud-Init on vSphere](https://williamlam.com/2022/07/exploring-the-cloud-init-datasource-for-vmware-guestinfo-using-vsphere.html).
+
 ## The frontend
 
 The frontend is as simple as I could make it without it looking bad. Bootstrap handles the layout and styling, which means making changes to the look is straightforward - you do not need a build pipeline or a framework, just edit the HTML. There are two sections: a self-service section for users to create and view their own VMs, and an admin section for managing the allowed options.
