@@ -19,7 +19,7 @@ I do not work with VMware in my professional life anymore, but I have a backgrou
 But we could have built a Self-Service Portal for anything else, or make it more generic down the road.
 
 ## What to build?
-Automation platforms like vRealize Automation (now Aria Automation) are powerful, and so are open-source alternatives. But in many cases you end up using a fraction of the feature set. If all you need is to let users spin up VMs from approved templates on approved clusters and networks, do you really need a full platform? I wanted to try to see if I could build a simple.
+Automation platforms like vRealize Automation (now Aria Automation) are powerful, and so are open-source alternatives. But in many cases you end up using a fraction of the feature set. If all you need is to let users spin up VMs from approved templates on approved clusters and networks, do you really need a full platform? I wanted to try to see if I could build a simple one.
 
 I know the PowerCLI commands. I know what vCenter can do and how to talk to it. This project was about putting the pieces together in a new way rather than learning new technologies from scratch.
 
@@ -27,7 +27,7 @@ I know the PowerCLI commands. I know what vCenter can do and how to talk to it. 
 - A Self-Service portal on plain HTML and CSS with Bootstrap.
 - Azure Static WebApps for hosting the frontend with Entra ID authentication out of the box.
 - Azure Functions with PowerShell for the backend API, using the same PowerCLI commands I already know.
-- Azure Table Storage for configuration and state management, keeping the backend stateless and costs low.
+- Azure Table Storage for configuration and state management, keeping the backend stateless
 - Cloud-Init support for Linux templates through guestinfo properties.
 - Users can log in, provision VMs, view their existing VMs, and delete them.
 - Admins can manage allowed VM Templates, Cloud-Init templates, clusters, networks, and system names through the frontend.
