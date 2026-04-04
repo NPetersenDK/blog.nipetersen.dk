@@ -53,7 +53,7 @@ That gave me a first iteration that actually worked. It set up environment varia
 
 I chose to make the backend in Azure Functions because i think it is a very rich platform for running code in different languages. Microsoft have made it possible to run them in a Docker container, so you are not limited to running them in Azure. My plan was that this backend could run in a container with network access to the vCenter.
 
-Azure Functions can expose your code as a Rest API without you needing to set up a web server or framework for it. You can write PowerShell code that then will run when you call the endpoint, and you can use all the PowerShell modules you want, including PowerCLI. This made it really fast to build the backend, since we can write code as without many changes to how we would write a script running locally.
+Azure Functions can expose your code as a Rest API without you needing to set up a web server or framework for it. You can write PowerShell code that then will run when you call the endpoint, and you can use all the PowerShell modules you want, including PowerCLI. This made it really fast to build the backend, since we can write code without many changes to how we would write a script running locally.
 
 The frontend is plain HTML with Bootstrap, deployed to an Azure Static WebApp. Authentication is handled by Azure Static WebApps and Entra ID.
 
@@ -92,7 +92,7 @@ So with everything put together, what did I get and what did I learn from this p
 
 - A self-service portal where users provision VMs with a few clicks.
 - An admin section to manage templates, clusters, networks, and system names.
-- The possibility to create templates with different cloud-init configurations, all mapping to the same VM Template in vCenter.
+- The possibility to create templates with different cloud-init configurations, all mapping to the same VM Template in vCenter. You could have a "Debian with Docker" and a "Debian with Nginx" template that both use the same vCenter Template but different cloud-init configs.
 - A REST API that can be consumed by scripts, pipelines, or other tools.
 - Code that is understandable if you know scripting.
 - All of this for around $10-11 per month in Azure costs.
