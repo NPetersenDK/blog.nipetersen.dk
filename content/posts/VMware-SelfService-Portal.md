@@ -49,7 +49,7 @@ There is a `StorageModule` that handles all Table Storage operations using the R
 
 Since vSphere 7 and later support cloud-init through guestinfo, the backend takes care of fetching the cloud-init configuration from the provided URL, injecting the hostname, and passing it to the VM during provisioning. This allows for seamless integration of cloud-init with your Linux templates, making it easier to manage and customize your VMs, and also update the cloud-init templates without needing to touch VM Templates and redeploy the backend.
 
-William Lam has a great blog post on how to set up cloud-init with vSphere [Cloud-Init on vSphere](https://williamlam.com/2022/07/exploring-the-cloud-init-datasource-for-vmware-guestinfo-using-vsphere.html).
+William Lam has a great blog post on how to set up cloud-init: [Cloud-Init on vSphere](https://williamlam.com/2022/07/exploring-the-cloud-init-datasource-for-vmware-guestinfo-using-vsphere.html).
 
 ## The frontend
 
@@ -75,13 +75,15 @@ This project was built heavily using the vibecoding approach and Github Copilot 
 
 I was kind of amazed of how quickly i had something. 
 
-My first prompt was this "I want to build a self-service portal for VMware vCenter using Azure Static WebApps for the frontend and Azure Functions with PowerShell for the backend. The backend should use PowerCLI to talk to vCenter and Azure Table Storage for configuration. The frontend should be simple HTML with Bootstrap. Can you help me get started with the backend code?. The frontend should have a form to create VMs and an admin section to manage templates and clusters. The backend should have endpoints for creating VMs, listing VMs, and managing config. I want to keep it simple and cost-effective, so no complex frameworks or databases. The form should include the following:
-- VM Name
-- Template (dropdown)
-- Cluster (dropdown)
-- Network (dropdown)
-- System Name (dropdown)
-- OS Type (dropdown)
+My first prompt was this:
+
+> I want to build a self-service portal for VMware vCenter using Azure Static WebApps for the frontend and Azure Functions with PowerShell for the backend. The backend should use PowerCLI to talk to vCenter and Azure Table Storage for configuration. The frontend should be simple HTML with Bootstrap. Can you help me get started with the backend code?. The frontend should have a form to create VMs and an admin section to manage templates and clusters. The backend should have endpoints for creating VMs, listing VMs, and managing config. I want to keep it simple and cost-effective, so no complex frameworks or databases. The form should include the following:
+> - VM Name
+> - Template (dropdown)
+> - Cluster (dropdown)
+> - Network (dropdown)
+> - System Name (dropdown)
+> - OS Type (dropdown)
 
 I think i have used around 5 hours in total on this project. And now the platform is ready for the next prompts to make it the specific needs for the environment it will be used in.
 
