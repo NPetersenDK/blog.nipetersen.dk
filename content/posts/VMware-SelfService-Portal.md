@@ -26,32 +26,34 @@ I was a VMware System Administrator for years. I know the PowerCLI commands. I k
 - Use Azure Table Storage for configuration and state management. This keeps the backend stateless and simple, and allows us to manage configuration without touching files or redeploying code.
 - Keep costs low. My goal is that it shouldnt exceed a monthly cost of around $15 to run.
 - Cloud-Init was a requirement for my Linux Templates. I wanted to be able to inject the cloud-init configuration through guestinfo properties, and have the backend handle that when provisioning the VM.
+- A user should be able to log in, see the available templates, clusters, and networks, and provision a VM with a few clicks. They should also be able to see their existing VMs and delete them if needed.
+- An admins should be able to manage the allowed templates, clusters, networks, and system names through the frontend without needing to touch any config files or code.
 
 I wanted to have this in 2 repositories, one for the backend and one for the frontend, to keep things organized and separate. 
 
 ## How it works
 
-The backend is an Azure Functions app written in PowerShell, running in a Docker container. The idea is that you run it close to your vCenter — on-premises in a VM with network access to vCenter. 
+The backend is an Azure Functions app written in PowerShell, running in a Docker container. The idea is that you run it close to your vCenter - on-premises in a VM with network access to vCenter. 
 
 The frontend is plain HTML with Bootstrap for styling, deployed to an Azure Static WebApp. Authentication and authorization is handled by Azure Static WebApps and Entra ID, so you do not need to build any login logic yourself.
 
-Configuration — which templates, clusters, networks, and system names are available — is stored in Azure Table Storage. The admin section of the frontend lets you manage these without touching any config files. When a user creates a VM, the request goes to the backend API, which reads the allowed config from Table Storage, provisions the VM on vCenter, and records it back to Table Storage.
+The configuration templates, clusters, networks, and system names that are available are stored in Azure Table Storage. The admin section of the frontend lets you manage these without touching any config files. When a user creates a VM, the request goes to the backend API, which reads the allowed config from Table Storage, provisions the VM on vCenter, and records it back to Table Storage.
 
 The API itself is protected by a function key, which the Static WebApp picks up from a Key Vault secret or a Static WebApp environment secret.
 
 ## The backend in a bit more detail
 
-The PowerShell part is what made this fast to build. The commands I needed — `New-VM`, `Get-Template`, `Get-Cluster`, `Get-VirtualPortGroup` — are things I had written dozens of times before. Wrapping them in an Azure Function with a JSON request body was straightforward.
+The PowerShell part is what made this fast to build. The commands I needed:  `New-VM`, `Get-Template`, `Get-Cluster`, `Get-VirtualPortGroup` - are things I had written dozens of times before. Wrapping them in an Azure Function with a JSON request body was straightforward.
 
 There is a `StorageModule` that handles all Table Storage operations using the REST API directly with key authentication, and a `VMwareModule` that handles the actual provisioning. Cloud-init is also supported for Linux templates and  from a public source like GitHub Gist, the hostname is injected, and it is passed to the VM via guestinfo properties.
 
 ## The frontend
 
-The frontend is as simple as I could make it without it looking bad. Bootstrap handles the layout and styling, which means making changes to the look is straightforward — you do not need a build pipeline or a framework, just edit the HTML. There are two sections: a self-service section for users to create and view their own VMs, and an admin section for managing the allowed options.
+The frontend is as simple as I could make it without it looking bad. Bootstrap handles the layout and styling, which means making changes to the look is straightforward - you do not need a build pipeline or a framework, just edit the HTML. There are two sections: a self-service section for users to create and view their own VMs, and an admin section for managing the allowed options.
 
 ## Cost
 
-This is where it gets interesting. The Azure Static WebApp in the Standard tier is around $9 per month. The Azure Storage Account used for Table Storage and configuration will be well under $2 per month for most organisations. The Docker container running the backend can run on any VM or server you already have near vCenter — there is no additional Azure cost for that part if you run it on-premises.
+This is where it gets interesting. The Azure Static WebApp in the Standard tier is around $9 per month. The Azure Storage Account used for Table Storage and configuration will be well under $2 per month for most organisations. The Docker container running the backend can run on any VM or server you already have near vCenter - there is no additional Azure cost for that part if you run it on-premises.
 
 So the total cost to run this platform is roughly $10-11 per month, plus whatever you already spend on infrastructure close to vCenter. Compare that to a vRealize Automation licence.
 

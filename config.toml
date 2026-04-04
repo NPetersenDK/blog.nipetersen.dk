@@ -15,15 +15,19 @@ googleAnalytics = ""
 disqusShortname = ""
 
 # Enable / Disable open link with a new tab.
-[blackfriday]
-  hrefTargetBlank = false
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      typographer = false
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [params]
   # Custom CSS / JS modules that will be imported by the template.
   # Files are relative to the static/ directory or a URL.
   # Files are imported in the order they appear here, after
   # theme.css and theme.js, respectively.
-  css_modules = []
+  css_modules = ["css/custom.css"]
   js_modules = []
 
   # Description and meta data for the search engines
