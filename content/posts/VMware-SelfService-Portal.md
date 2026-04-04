@@ -27,7 +27,7 @@ I was a VMware System Administrator for years. I know the PowerCLI commands. I k
 - Keep costs low. My goal is that it shouldnt exceed a monthly cost of around $15 to run.
 - Cloud-Init was a requirement for my Linux Templates. I wanted to be able to inject the cloud-init configuration through guestinfo properties, and have the backend handle that when provisioning the VM.
 - A user should be able to log in, see the available templates, clusters, and networks, and provision a VM with a few clicks. They should also be able to see their existing VMs and delete them if needed.
-- An admins should be able to manage the allowed templates, clusters, networks, and system names through the frontend without needing to touch any config files or code.
+- A admin should be able to manage the allowed templates, clusters, networks, and system names through the frontend without needing to touch any config files or code.
 
 I wanted to have this in 2 repositories, one for the backend and one for the frontend, to keep things organized and separate. 
 
