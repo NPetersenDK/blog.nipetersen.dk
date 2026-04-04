@@ -26,6 +26,8 @@ I was a VMware System Administrator for years. I know the PowerCLI commands. I k
 - Use Azure Table Storage for configuration and state management. This keeps the backend stateless and simple, and allows us to manage configuration without touching files or redeploying code.
 - Keep costs low. My goal is that it shouldnt exceed a monthly cost of around $15 to run.
 
+I wanted to have this in 2 repositories, one for the backend and one for the frontend, to keep things organized and separate. 
+
 ## How it works
 
 The backend is an Azure Functions app written in PowerShell, running in a Docker container. The idea is that you run it close to your vCenter — on-premises in a VM with network access to vCenter. 
@@ -35,8 +37,6 @@ The frontend is plain HTML with Bootstrap for styling, deployed to an Azure Stat
 Configuration — which templates, clusters, networks, and system names are available — is stored in Azure Table Storage. The admin section of the frontend lets you manage these without touching any config files. When a user creates a VM, the request goes to the backend API, which reads the allowed config from Table Storage, provisions the VM on vCenter, and records it back to Table Storage.
 
 The API itself is protected by a function key, which the Static WebApp picks up from a Key Vault secret or a Static WebApp environment secret.
-
-The project ended up being two repositories: a [backend](https://github.com/NPetersenDK/VMware-SelfService-Backend) and a [frontend](https://github.com/NPetersenDK/VMware-SelfService-Frontend).
 
 ## The backend in a bit more detail
 
@@ -67,7 +67,6 @@ So the total cost to run this platform is roughly $10-11 per month, plus whateve
 ## Video
 
 Here is a short video showing the portal in action:
-
 {{< youtube CJ7mupdZHSo >}}
 
 ## Repositories
