@@ -13,7 +13,7 @@ I wanted to see how far i could come with a "vibecoded" solution, but still work
 
 # Why did I try to build this?
 
-I do not work with any VMware components in my professional life anymore, but I have a background as a VMware System Administrator, i still have access to a lab running vSphere. I wanted to try to bridge the gap between my current work with Cloud solutions and my past experience with VMware, and this project was a perfect way to do that. some of the things we do here, is things i wouldnt have done without my experience with Cloud and the offerings from Azure.
+I do not work with any VMware components in my professional life anymore, but I have a background as a VMware System Administrator, and I still have access to a lab running vSphere. I wanted to try to bridge the gap between my current work with Cloud solutions and my past experience with VMware, and this project was a perfect way to do that. some of the things we do here, is things i wouldnt have done without my experience with Cloud and the offerings from Azure.
 
 vRealize Automation (now Aria Automation) and other automation platforms are powerful, but they often come with a price tag and a maintenance burden that not every organisation can justify. If all you want is to let users spin up VMs from a set of approved templates, on approved clusters and networks, without involving the helpdesk every time - you do not need a full-blown platform to do that.
 
