@@ -5,7 +5,7 @@ draft: false
 tags: ["VMware", "PowerShell", "Azure", "vCenter", "SelfService", "AI", "Project", "Github", "Open Source"]
 ---
 
-Last month I built a SelfService Portal for VMware vCenter as an alternative to the VMware vRealize Automation platform. The idea was simple: let users provision their own VMs without raising tickets, while admins retain control over where and how VMs can be created — without paying for an expensive platform to do it. The goal was to have a maintanable, cost-effective solution that could be easily deployed in any environment with a vCenter and some Azure services for under $15 per month.
+Last month I built a SelfService Portal for VMware vCenter as an alternative to a full-fledged automation platform. The idea was simple: let users provision their own VMs in minutes without manual work needed and without paying for an expensive platform to do it. The goal was to have a maintanable, cost-effective solution that could be easily deployed in any environment with a vCenter and some Azure services for under $15 per month.
 
 I wanted to see how far i could come with a "vibecoded" solution, but still work in something i know of, and that is something im sure i can maintain with and without the need of AI.
 
@@ -25,6 +25,7 @@ I was a VMware System Administrator for years. I know the PowerCLI commands. I k
 - Azure Functions for the backend API using PowerShell. By doing this we keep it simple, due to we use the same PowerCLI commands we already know. We do not need to learn VMwares REST API or a new programming language.
 - Use Azure Table Storage for configuration and state management. This keeps the backend stateless and simple, and allows us to manage configuration without touching files or redeploying code.
 - Keep costs low. My goal is that it shouldnt exceed a monthly cost of around $15 to run.
+- Cloud-Init was a requirement for my Linux Templates. I wanted to be able to inject the cloud-init configuration through guestinfo properties, and have the backend handle that when provisioning the VM.
 
 I wanted to have this in 2 repositories, one for the backend and one for the frontend, to keep things organized and separate. 
 
