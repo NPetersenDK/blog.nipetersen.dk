@@ -57,11 +57,6 @@ This is where it gets interesting. The Azure Static WebApp in the Standard tier 
 
 So the total cost to run this platform is roughly $10-11 per month, plus whatever you already spend on infrastructure close to vCenter. Compare that to a vRealize Automation licence.
 
-## Video
-
-Here is a short video showing the portal in action:
-{{< youtube CJ7mupdZHSo >}}
-
 ## Repositories
 
 - Backend: [NPetersenDK/VMware-SelfService-Backend](https://github.com/NPetersenDK/VMware-SelfService-Backend)
@@ -85,3 +80,8 @@ My first prompt was this "I want to build a self-service portal for VMware vCent
 - OS Type (dropdown)
 
 I think i have used around 5 hours in total on this project. And now the platform is ready for the next prompts to make it the specific needs for the environment it will be used in.
+
+## Video
+
+Here is a short video showing the portal in action:
+{{< youtube CJ7mupdZHSo >}}
