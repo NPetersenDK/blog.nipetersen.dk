@@ -24,7 +24,7 @@ In my work life I work as a DevOps Engineer for Aarhus University - my daily wor
 - AV stuff (Dante, Analog Audio, SDI etc.)
   
 # Homelab
-My Homelab is based around a lot of different stuff and architectures. Trying to cramp as much compute into a 12U rack with power draw in mind. 
+My Homelab is based around a lot of different stuff and architectures. Trying to cramp as much compute into a 12U rack with power draw in mind. Before VMware killed Lab-use licenses, it was mostly based around VMware, but now its more of a mix of different stuff, mostly Open-Source, Docker, Kubernetes, etc. I have a lot of different projects running in the lab, and I use it for testing and learning new stuff.
 
 # Volunteering work
 I have been volunteering for several things but most noteworthy is:
