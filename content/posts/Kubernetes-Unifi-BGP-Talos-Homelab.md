@@ -189,8 +189,6 @@ The sequence:
 4. Create the one manual bootstrap secret for External Secrets
 5. Wait
 
-The "wait" part is real. cert-manager uses DNS-01 to issue certs for `*.services.netdc.dk` and `*.monitoring.netdc.dk`, and that involves Cloudflare propagating DNS records. Traefik's HTTPS listeners show `InvalidCertificateRef` until those certs exist.
-
 Total time from no VMs to everything green: around 1 hour.
 
 # What sucked
