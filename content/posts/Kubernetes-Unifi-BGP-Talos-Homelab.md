@@ -1,27 +1,30 @@
 ---
 title: "Kubernetes, Unifi, BGP and Talos in a Homelab"
-date: 2026-05-14T12:00:00+01:00
+date: 2026-05-13T12:00:00+01:00
 draft: false
 tags: ["Kubernetes", "Talos", "Cilium", "BGP", "Unifi", "ArgoCD", "GitOps", "Homelab", "PowerShell", "Traefik"]
 ---
 
 Last year I started looking into Kubernetes for the first time. There are a lot of options - k3s, k0s, Talos, kubeadm - and a lot of new terms to get your head around. I started with k3s, and have been running it for half a year. The last week I have been slowly but surely transitioning to Talos. A fully automated GitOps-driven cluster that I can wipe and rebuild from scratch in under an hour. 
+- Real LoadBalancer IPs with BGP peering to my Unifi UDM-PRO. 
+- Traefik with Gateway API for routing. cert-manager for TLS. 
+- External Secrets Operator with Azure Key Vault for secrets management. 
 
+
+The whole stack is in a single git repository and ArgoCD takes care of the syncing.
 But how did we get here?
 
 <!--more-->
 
 # The backstory
 
-When I started looking at Kubernetes the number of options was overwhelming. k3s, k0s, kubeadm, Talos. I looked at Talos Linux early on. If you don't know it, is an OS with no shell, no SSH, and you configure everything through an API. That surely sounds great. But when you're even discussing with yourself what a Kubernetes Pod is, then Talos might be a bit much.
+When I started looking at Kubernetes the number of options was overwhelming. k3s, k0s, kubeadm, Talos. I looked at Talos Linux early on. If you don't know it, is an OS with no shell, no SSH, and you configure everything through an API and Bootstrap it from the start. That surely sounds great. But when you're even discussing with yourself what a Kubernetes Pod is, then Talos might be a bit much.
 
-So I started with k3s instead. k3s is Kubernetes but with a lot of the sharp edges smoothed off and it runs anywhere. It has been my Kubernetes cluster for over 6 months. I have learned a lot about Kubernetes using this. k3s is fine but it does require more maintenance in some ways. You still have the OS to worry about, the Kubernetes software stack. 
+So I started with k3s instead. k3s is Kubernetes but with a lot of the sharp edges smoothed off and it runs anywhere. It has been my Kubernetes cluster for over 6 months. I have learned a lot about Kubernetes using this. k3s is fine but it does require more maintenance in some ways. You still have the OS to worry about, the Kubernetes software stack, installing stuff and making sure something outside Kubernetes dosen't cause problems.
 
 # Why did I bother if k3s was fine?
 
-Talos Linux is an OS that exists for one purpose: running Kubernetes. There is no package manager, no SSH, no shell. You configure it entirely through an API, and the configuration is YAML that you store in git. That aligns really well with how I want to run things, my daily work is a DevOps role, so I should also be running my homelab that way.
-
-The other thing I like about Talos is that it is immutable. Nodes don't drift. If something is wrong with a node, you reset it and it comes back clean. That is the kind of behaviour you want in infrastructure you are running at home without a team watching it.
+Talos Linux is an OS that exists for one purpose: running Kubernetes. There is no package manager, no SSH, no shell. You configure it entirely through an API, and the configuration is YAML. That aligns really well with how I want to run things, my daily work is a DevOps role, so I should also be running my homelab that way. The other thing I like about Talos is that it is immutable. Nodes don't drift. If something is wrong with a node, you reset it and it comes back clean. 
 
 Also that they provide a lot of ways to build the cluster. They do provide VMware Templates, stuff for Bare Metal and Cloud Providers. I also do belive that this is the closest you get to what you get from an Cloud Provider, but locally.
 
@@ -43,9 +46,13 @@ With k3s you have to install the OS, then install k3s on top. Talos provides an 
 
 I ended up building my own PowerShell scripts to deploy the cluster. The Talos documentation is good [(Talos on VMware documentation)](https://docs.siderolabs.com/talos/v1.13/platform-specific-installations/virtualized-platforms/vmware), but it is really just a collection of one-off commands. I wanted something that I could run from start to finish without having to copy-paste commands and wait for things to be ready in between.
 
+My scripts are available here: [GitHub Repository](https://github.com/NPetersenDK/talos)
+
+I have created a YAML format that contains all the environment-specific configuration called `environment.yaml` - IP addresses, network config, what clusters in VMware to use, portgroups etc. That file is being used in the below script. An example file is here: [environment.example.yaml](https://github.com/NPetersenDK/talos/blob/main/exampleconfigs/environment.example.yaml).
+
 `Deploy-TalosCluster.ps1` handles uploading the Talos OVA and provisioning the six VMs in vSphere. `Bootstrap-TalosCluster.ps1` picks up from there - it waits for the Talos API to come up on all control plane nodes, bootstraps etcd, retrieves the kubeconfig, and installs Cilium via Helm.
 
-After running the 2 scripts, you end up with this
+After running the 2 scripts, you end up with this. Or whatever you put inside the `environment.yaml` file:
 
 ```bash
 kubectl get nodes
