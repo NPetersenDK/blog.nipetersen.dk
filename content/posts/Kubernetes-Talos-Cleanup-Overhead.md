@@ -59,7 +59,7 @@ In Kubernetes you can have what they call Network Policies. Each namespace and p
 
 Seven VMs gone, plus some additional cleanup of other VMs that were no longer needed. The result:
 
-- **3TB less storage** consumed across the vSphere datastores
+- **3TB less storage** used by VMs and their attached disks
 - **80GB less RAM** allocated across the hosts
 - The cluster itself runs on 3 control plane nodes and 3 workers, more services are now redundant with multiple replicas
 
