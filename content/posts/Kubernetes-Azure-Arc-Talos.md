@@ -65,8 +65,11 @@ After a few minutes the cluster will be connected, and you should be able to see
 
 [![Azure Arc Talos Overview](/img/Azure-Arc-Talos-Overview.png)](/img/Azure-Arc-Talos-Overview.png)
 
-At this point the Kubernetes resources section in the portal will prompt you to sign in with a service account token. That is where the Entra ID setup comes in.
+But at the moment the Kubernetes resources section will be empty, and if you try to click on it you will get a prompt to sign in with a service account token. So right now the cluster is more in a state where you can see some metadata about it, but you can't actually manage it or see the resources. 
 
+If you click "View Kubernetes resources" you get a prompt to paste a bearer token. This is because the cluster is connected, but there is no authentication set up yet. That is where the Entra ID integration comes in, which is what I will cover in the next section.
+
+The error / prompt looks like this:
 [![Azure Arc Bearer Token Prompt](/img/Azure-Arc-Talos-BearerTokenIssue.png)](/img/Azure-Arc-Talos-BearerTokenIssue.png)
 
 # Authentication with Entra ID
