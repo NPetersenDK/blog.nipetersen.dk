@@ -110,7 +110,7 @@ Azure Arc has a GitOps feature built in, backed by Flux or ArgoCD. You point it 
 I have not used it. The cluster already runs ArgoCD and everything is wired up through that. Switching would mean migrating all the existing Applications and there is no reason to do that. If you are starting from scratch and are already in the Azure ecosystem, the Arc GitOps integration is worth looking at - it is a reasonable alternative to running ArgoCD or Flux yourself.
 
 # What did you actually get out of it?
-I feel like it is a nice onboarding experience for Azure users, and the portal view of the cluster is a nice addition. For me I think that many will use this feature to easily connect and manage the Kubernetes clusters using Entra ID instead of static kubeconfigs and tokens. The portal view is nice to have, but I don't think it replaces kubectl or ArgoCD for actual management of the cluster.
+I feel like it is a nice onboarding experience for Azure users, and the portal view of the cluster is a nice addition. Microsofts documentation for this is actually really good. For me I think that many will use this feature to easily connect and manage the Kubernetes clusters using Entra ID instead of static kubeconfigs and tokens. The portal view is nice to have, but I don't think it replaces kubectl or ArgoCD for actual management of the cluster.
 
 Is it worth it to connect your cluster to Arc? If you are already in the Azure ecosystem and want the portal view and Entra ID integration, it is a good option. It dosen't cost anything to connect a cluster, and you can always disconnect it later if you don't like it. 
 
