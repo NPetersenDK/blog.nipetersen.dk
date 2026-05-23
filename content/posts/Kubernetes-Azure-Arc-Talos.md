@@ -38,7 +38,7 @@ The main features I am interested in are the portal management and Entra ID auth
 
 In my professional life I work with Azure full time. I wanted to see how the Azure Arc experience is for Kubernetes clusters, and if it could be a good way to bridge On-Premise and Cloud together. I also wanted to see how the authentication story works with Entra ID, and if it is a good alternative to static kubeconfigs and tokens for cluster access.
 
-Both of those work well.
+On-Premise is also seeing a bit of a comeback. Data sovereignty and regulatory requirements are pushing a lot of organisations to think twice about running everything in a public cloud, especially in Europe. Azure Arc fits well into that picture - you keep the workloads on your own infrastructure, but still get the management plane and identity layer from Azure. That is a reasonable trade for a lot of organisations that want the cloud tooling without the data leaving their own datacenters.
 
 # Getting started
 
