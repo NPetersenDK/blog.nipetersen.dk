@@ -51,7 +51,7 @@ You should note that Microsoft does this through commands, and this is kinda not
 - Register the Microsoft.Kubernetes, Microsoft.KubernetesConfiguration and Microsoft.ConnectedKubernetes resource providers in Azure
 - Install the Az.Kubernetes module in PowerShell
 
-After that you can run a single command to connect the cluster, and Microsoft takes care of the rest:
+After that you can run a single command to connect the cluster, and Microsoft takes care of the rest. The full set of commands looks like this:
 ```powershell
 Install-Module -Name Az.ConnectedKubernetes
 New-AzResourceGroup -Name MyResourceGroup -Location westeurope
@@ -61,7 +61,7 @@ Register-AzResourceProvider -ProviderNamespace Microsoft.ExtendedLocation
 New-AzConnectedKubernetes -ClusterName MyCluster -ResourceGroupName MyResourceGroup -Location westeurope
 ```
 
-Now that the cluster is connected, you can see it in the portal along with some basic info about the cluster:
+After a few minutes the cluster will be connected, and you should be able to see it in the portal along with some basic info about the cluster:
 
 [![Azure Arc Talos Overview](/img/Azure-Arc-Talos-Overview.png)](/img/Azure-Arc-Talos-Overview.png)
 
