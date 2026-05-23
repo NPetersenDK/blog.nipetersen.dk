@@ -5,7 +5,7 @@ draft: false
 tags: ["Kubernetes", "Talos", "Azure Arc", "ArgoCD", "GitOps", "Entra ID", "Azure", "Homelab"]
 ---
 
-Azure Arc lets you connect a Kubernetes cluster to Azure and manage it from the portal, regardless of where it runs. In this case, a Talos cluster running on VMware at home. The cluster does not need any inbound ports open - the Arc agents run inside the cluster and maintain an outbound connection to Azure.
+Azure Arc lets you connect a Kubernetes cluster to Azure and manage it from the portal, regardless of where it runs. In this case, a Talos cluster running on VMware at home, but it could be any Kubernetes cluster running anywhere. The cluster does not need any inbound ports open - the Arc agents run inside the cluster and maintain an outbound connection to Azure.
 
 You also get MFA and Entra ID integration for authentication, and a live view of the cluster's resources in the portal.
 
