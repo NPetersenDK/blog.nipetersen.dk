@@ -2,7 +2,7 @@
 title: "Kubernetes: Azure Arc in a Talos Kubernetes Cluster"
 date: 2026-05-23T00:00:00+01:00
 draft: false
-tags: ["Kubernetes", "Talos", "Azure Arc", "ArgoCD", "GitOps", "Entra ID", "Azure", "Homelab"]
+tags: ["Kubernetes", "Talos", "Azure Arc", "ArgoCD", "GitOps", "Entra ID", "Azure", "Homelab", "Arc", "Azure Arc-enabled Kubernetes"]
 ---
 
 Azure Arc lets you connect a Kubernetes cluster to Azure and manage it from the portal, regardless of where it runs. In this case, a Talos cluster running on VMware at home, but it could be any Kubernetes cluster running anywhere. The cluster does not need any inbound ports open - the Arc agents run inside the cluster and maintain an outbound connection to Azure.
@@ -42,14 +42,16 @@ On-Premise is also seeing a bit of a comeback. Data sovereignty and regulatory r
 
 # Getting started
 
-For almost everything, I do i use PowerShell, and Microisoft have a really good quickstart guide for connecting a cluster to Arc here: [Quickstart: Connect a Kubernetes cluster to Azure Arc](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-powershell)
+For almost everything, I do i use PowerShell, and Microsoft have a really good quickstart guide for connecting a cluster to Arc here: [Quickstart: Connect a Kubernetes cluster to Azure Arc](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-powershell)
 
-You should note that Microsoft does this through commands, and this is kinda not GitOps-y like putting it in Argo and Manifests.
+You should note that Microsoft does this through commands, and this is kinda not GitOps-y like putting it in Argo and Manifests. The comamnd does some actions behind the scenes to connect the cluster.
 
 ## Lets break down the steps:
-- Create a resource group in Azure for the cluster to live in
-- Register the Microsoft.Kubernetes, Microsoft.KubernetesConfiguration and Microsoft.ConnectedKubernetes resource providers in Azure
-- Install the Az.Kubernetes module in PowerShell
+
+We need the following to get the cluster connected:
+- The module Az.ConnectedKubernetes installed in PowerShell
+- A resource group in Azure for the cluster to live in
+- The Microsoft.Kubernetes, Microsoft.KubernetesConfiguration and Microsoft.ConnectedKubernetes resource providers registered
 
 After that you can run a single command to connect the cluster, and Microsoft takes care of the rest. The full set of commands looks like this:
 ```powershell
@@ -118,13 +120,13 @@ Microsoft's documentation for the Entra authentication setup is here: [Cluster c
 
 # What you can see
 
-Once the Entra binding is in place, the Kubernetes resources section opens up. It covers Namespaces, Workloads (Deployments, DaemonSets, StatefulSets, Pods), Services, Storage (PVCs, StorageClasses) and Configuration (ConfigMaps, Secrets). It pulls live data from the cluster through the Arc tunnel, so what you see reflects the actual state.
+Once the Entra binding is in place you dont only get access to run commands, but also seeing the Kubernetes resources section in the portal. It covers Namespaces, Workloads (Deployments, DaemonSets, StatefulSets, Pods), Services, Storage (PVCs, StorageClasses) and Configuration (ConfigMaps, Secrets). It pulls live data from the cluster through the Arc tunnel, so what you see reflects the actual state.
 
 [![Azure Arc Talos Namespaces Overview](/img/Azure-Arc-Talos-Namespaces-Overview.png)](/img/Azure-Arc-Talos-Namespaces-Overview.png)
 
 # GitOps
 
-Azure Arc has a GitOps feature built in, backed by Flux or ArgoCD. You point it at a git repository and it syncs manifests into the cluster, similar to how ArgoCD works.
+Azure Arc-enabled Kubernetes has a GitOps feature built in, backed by Flux or ArgoCD. You point it at a git repository and it syncs manifests into the cluster, similar to how ArgoCD works.
 
 I have not used it. The cluster already runs ArgoCD and everything is wired up through that. Switching would mean migrating all the existing Applications and there is no reason to do that. If you are starting from scratch and are already in the Azure ecosystem, the Arc GitOps integration is worth looking at - it is a reasonable alternative to running ArgoCD or Flux yourself.
 
