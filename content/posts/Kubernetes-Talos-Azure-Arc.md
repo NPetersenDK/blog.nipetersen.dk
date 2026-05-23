@@ -9,7 +9,7 @@ Azure Arc lets you connect a Kubernetes cluster to Azure and manage it from the 
 
 You also get MFA and Entra ID integration for authentication, and a live view of the cluster's resources in the portal.
 
-Lets dive in.
+![Azure Arc Hybrid Overview](Azure-Arc-Hybrid-Overview.png)
 
 <!--more-->
 
