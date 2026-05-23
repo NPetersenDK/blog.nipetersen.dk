@@ -88,13 +88,31 @@ kubectl create clusterrolebinding entra-user-binding --clusterrole cluster-admin
 
 If you want to bind a group instead of a specific user, pass the group's Object ID with `--group` instead of `--user`. That way anyone in the group gets access without repeating the process per user.
 
-For CLI access from outside the network, `az connectedk8s proxy` opens a local tunnel through Arc using the same Azure session:
+After you have done that, you can refresh the portal and the Kubernetes resources should start showing up. You can also run `az connectedk8s proxy` to open a local proxy to the cluster through the Arc tunnel. See commands and output below:
 
 ```powershell
-az connectedk8s proxy -n <cluster-name> -g <resource-group>
+> az connectedk8s proxy -n clustername -g resourcegroupname
+
+    Preview version of extension is disabled by default for extension installation, enabled for modules without stable versions. 
+    Please run 'az config set extension.dynamic_install_allow_preview=true or false' to config it specifically. 
+    The command requires the extension connectedk8s. Do you want to install it now? The command will continue to run after the extension is installed. (Y/n): y
+    Run 'az config set extension.use_dynamic_install=yes_without_prompt' to allow installing extensions without prompt.
+
+    Proxy is listening on port 47011
+    Merged "clustername" as current context in /Users/nikolaj/.kube/config
+    Start sending kubectl requests on 'clustername' context using kubeconfig at /Users/nikolaj/.kube/config
+    Press Ctrl+C to close proxy.
 ```
 
-No VPN, no open inbound firewall ports.
+After that you can open another terminal and run `kubectl get nodes` for example, and it will work through the Arc tunnel using your Entra ID authentication:
+
+```powershell
+> kubectl get nodes
+NAME             STATUS   ROLES    AGE   VERSION
+talos-node-1     Ready    <none>   10d   v1.36.0
+talos-node-2     Ready    <none>   10d   v1.36.0
+talos-node-3     Ready    <none>   10d   v1.36.0
+```
 
 Microsoft's documentation for the Entra authentication setup is here: [Cluster connect - Microsoft Entra authentication option](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/cluster-connect?tabs=azure-cli#microsoft-entra-authentication-option)
 
