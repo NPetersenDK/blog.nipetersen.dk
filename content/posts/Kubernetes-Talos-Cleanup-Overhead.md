@@ -39,6 +39,9 @@ And as i talked about earlier, the maintenance side has become more and more req
 
 With Kubernetes you stop thinking about machines and start thinking about workloads. The Zabbix proxy is now a pod with resource requests of 50m CPU and 64MB RAM, with a limit of 500m (0.5CPU, yeah thats a thing..) and 256MB. The GitHub Actions runner scales between 0 and 10 replicas depending on how many jobs are queued, then scales back down using: [Github Actions Runner Controllers](https://github.com/actions/actions-runner-controller).
 
+[![Kubernetes Memory Reduction](/img/Kubernetes-Memory-Reduction.png)](/img/Kubernetes-Memory-Reduction.png)
+
+
 # What is running now
 
 The cluster runs everything the old VMs did, plus things that were not practical to run before.
